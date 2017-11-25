@@ -1,0 +1,29 @@
+options:
+  domain:
+    type: string
+    default: "evil.corp"
+    description: |
+      The DNS domain name is used to construct the base DN of the LDAP directory.
+      For example, 'foo.example.org' will create the directory with 'dc=foo, dc=example, dc=org' as base DN.
+  organization:
+    type: string
+    default: "evilcorp"
+    description: |
+      The name of the organization to construct the base DN of the LDAP directory
+  password:
+    type: string
+    default: null
+    description: |
+      Admin password used to create a directory. Auto-generated if not provided.
+      Use include-file:// directives in bundles to supply that to avoid storing credentials in config.yaml
+  tls_key:
+    type: string
+    default: null
+    description: |
+      TLS key to use accompanying the tls certificate in tls_ca.
+  tls_ca:
+    type: string
+    default: null
+    description: |
+      TLS CA used for by slapd so that clients can verify server identity. Alternatively, tls-certificates
+      interface can be used to retrieve this certificate and a key used with it.

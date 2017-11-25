@@ -1,0 +1,27 @@
+includes:
+  - layer:basic
+  - layer:apt
+  - layer:tls-client
+defines:
+  tls-dir:  # define an "enable-bar" option for this layer
+    description: |
+      A directory to store server certificate and key
+    type: string
+    default: '/etc/ldap/tls'
+options:
+  basic:
+    packages:
+      - 'python3-ldap3'
+  apt:
+    packages:
+      - 'slapd'
+      - 'ldap-utils'
+  tls-client:
+    # /etc/ssl/certs - ca and server certificates
+    # /etc/ssl/private - private keys, rw-r---, user=root, group=openldap
+    ca_certificate_path: '/etc/ldap/tls/slapd-ca.crt'
+    server_certificate_path: '/etc/ldap/tls/slapd-server.crt'
+    server_key_path: '/etc/ldap/tls/slapd-server.key'
+    # for peer servers to authenticate us
+    # client_certificate_path: '/etc/ssl/certs/slapd-client.crt'
+    # client_key_path: '/etc/ssl/slapd-client.key'
